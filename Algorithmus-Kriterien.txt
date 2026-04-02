@@ -1,0 +1,136 @@
+RADPLAN – ALGORITHMUS-KRITERIEN UND VERGABEKATALOG
+==================================================
+
+1. ZIELSYSTEM
+-------------
+Die Planungslogik verfolgt folgende Hauptziele in absteigender Priorität:
+
+1. Vollständige Besetzung aller notwendigen D- und HG-Dienste.
+2. Vermeidung fachlich unzulässiger oder organisatorisch riskanter Vergaben.
+3. Faire Verteilung von Dienstlasten innerhalb der geeigneten Personengruppen.
+4. Berücksichtigung individueller Wünsche, historischer Belastung und Feiertagsrotation.
+5. Erhalt hoher Transparenz in Monats-, Jahres- und Detailauswertungen.
+
+
+2. HARTE AUSSCHLUSSKRITERIEN
+----------------------------
+Eine Person darf für einen Dienst nicht eingeplant werden, wenn mindestens ein harter Ausschluss vorliegt.
+
+A) Allgemeine Ausschlüsse
+- Person ist dienstbefreit.
+- Person ist am betreffenden Tag abwesend.
+- Der Dienstslot ist bereits besetzt.
+- Es liegt ein expliziter NO_DUTY-Wunsch vor.
+
+B) Bereitschaftsdienst (D)
+- Am Tag ist bereits Frei/Abwesenheit gesetzt.
+- Der Folgetag ist Urlaub oder urlaubsähnlich.
+- Am Vortag oder Folgetag besteht bereits D.
+- Unzulässige Nachbarschaft zu HG-Konstellationen.
+- Oster-/Pfingst-Blockausschluss greift.
+- Rollen- bzw. Personensonderregel verbietet die Vergabe.
+
+C) Hintergrunddienst (HG)
+- Person ist fachlich nicht geeignet.
+- Dienst- oder Abwesenheitskonflikte liegen vor.
+- Bereits bestehender Konflikt mit D/HG am Zieltag.
+
+
+3. WEICHE KRITERIEN / SCORE-KRITERIEN
+-------------------------------------
+Diese Kriterien beeinflussen die Priorität einer Person, blockieren aber nicht zwingend.
+
+A) Zielerfüllung
+- Unter Soll liegende Personen werden bevorzugt.
+- Über Soll liegende Personen werden abgewertet.
+
+B) Wunschbezug
+- BD-Wunsch steigert Priorität für D.
+- HG-Wunsch steigert Priorität für HG.
+- NO_DUTY verhindert eine Vergabe.
+
+C) Wochenendfairness
+- Ziel ist ein ausgeglichenes Wochenendäquivalent pro Person.
+- D zählt an Wochenenden als 1.0.
+- HG zählt an Wochenenden ohne D als 0.5.
+
+D) Abstand und Mustervermeidung
+- Kurze Abstände zwischen gleichen Diensten werden abgestraft.
+- D-F-D-F-Muster werden weich vermieden.
+- Direkt aufeinanderfolgende HG werden möglichst vermieden.
+
+E) Feiertags- und Samstagsausgleich
+- Historisch weniger belastete Personen werden an Feiertagen bevorzugt.
+- Samstags-BD unter Fachärzten sollen gleichmäßiger verteilt werden.
+
+F) Urlaubsnahe Konstellationen
+- Donnerstag vor Urlaubswoche kann positiv gewichtet werden.
+
+
+4. SPEZIALLOGIKEN
+-----------------
+- Automatische Setzung eines freien Folgetages nach D.
+- Konfliktlogik zwischen definierten Personenpaaren.
+- Oster-/Pfingst-Blockrotation über Monatsgrenzen.
+- Historische Unterscheidung zwischen HG für AA und HG für FA.
+- Individuelle Standard-BD-Ziele je Person.
+
+
+5. HISTORISCHE KENNZAHLEN
+-------------------------
+Für vergangene Monate werden erhoben:
+- Anzahl BD
+- Anzahl HG
+- Wochenenddienstäquivalente
+- Feiertagsdienstlast
+- Donnerstag-BD
+- HG für Assistenzärzte
+- HG für Fachärzte
+- Samstags-BD
+
+Diese Kennzahlen dienen als Fairness- und Belastungskorrektiv.
+
+
+6. ESKALATION / LOCKERUNG
+-------------------------
+Wenn keine vollständige Besetzung unter allen harten und weichen Regeln möglich ist,
+werden ausgewählte Restriktionen kontrolliert gelockert.
+
+Ziel:
+- Vollbesetzung sicherstellen,
+- dabei so wenig Fairness wie nötig opfern.
+
+Die Lockerung betrifft vor allem:
+- Wochenendabstände,
+- Distanzanforderungen,
+- punktuelle Notlösungen bei sehr engem Kandidatenfeld.
+
+
+7. UI- UND BEDIENKRITERIEN MIT DIREKTER ALGORITHMUSRELEVANZ
+-----------------------------------------------------------
+Die Anwendung muss Regelwirkungen sichtbar und bedienbar halten:
+- globale Zeitraumsteuerung für Monat/Jahr,
+- nutzbar auch bei offenem Modal,
+- nutzbar auch im aktiven Planungsmodus,
+- Jahresdashboard für Mitarbeitende,
+- umschaltbare Detailansichten pro Mitarbeitendenprofil,
+- Monats- und Jahresabdeckung visuell nachvollziehbar.
+
+
+8. QUALITÄTSKRITERIEN DER IMPLEMENTIERUNG
+-----------------------------------------
+Eine gute Implementierung erfüllt zusätzlich:
+- keine stillen Doppelvergaben,
+- keine inkonsistenten Folgetagsregeln nach D,
+- nachvollziehbare Berichtsausgaben,
+- valide Monats- und Jahresstatistiken,
+- saubere Behandlung von Feiertagen und Monatsgrenzen,
+- robuste Bedienbarkeit auf allen Viewportgrößen.
+
+
+9. EMPFOHLENE WEITERENTWICKLUNG
+-------------------------------
+- Konfigurierbare Regelattribute statt namentlicher Sonderlogik.
+- Einbezug von Beschäftigungsgrad/Sollzeitanteil.
+- Sammelspeicherung und Sammelübernahme mehrerer Monatsentwürfe.
+- Administrierbare Stammdatenoberfläche für Regeln und Rollen.

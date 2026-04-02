@@ -1,0 +1,24 @@
+{
+  "name": "RadPlan — Klinik für Radiologie & Nuklearmedizin",
+  "short_name": "RadPlan",
+  "description": "Digitaler Dienstplan für die Klinik für Radiologie & Nuklearmedizin, Klinikum St. Georg Leipzig",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#060D16",
+  "theme_color": "#0B1929",
+  "icons": [
+    {
+      "src": "img/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "img/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}

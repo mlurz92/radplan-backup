@@ -1,0 +1,56 @@
+Regeln und Kriterien für den RadPlan Neural Scheduler (v3.2):
+
+GRUNDPRINZIPIEN & DATENBASIS:
+- Als relevante Dienste zählen ausschließlich der Bereitschaftsdienst (D) und der Hintergrunddienst (HG).
+- Der Algorithmus arbeitet mit einer extremen Iterationstiefe: Er führt 15 Optimierungszyklen durch, in denen bis zu 150 Cross-Role-Tauschvorgänge (Swaps) pro Phase simuliert und auf Fairness getestet werden.
+- Die Verteilung wird primär durch die Ausgewogenheit innerhalb des aktuellen Monats diktiert.
+- Historische Daten (seit 01.01. des Jahres) werden protokolliert, fungieren aber nur noch als "Tie-Breaker" bei absolut gleichwertigen Kandidaten im aktuellen Monat.
+- Manuell gesetzte Dienste (Fix-Dienste) haben absolute Priorität. Der Algorithmus passt sich um diese Anker herum an.
+- Dienstwünsche (Wishes) fließen mit hohem positivem Score, "Kein Dienst"-Wünsche als hartes K.-o.-Kriterium in die Planung ein.
+
+BESETZUNGSREGELN & QUALIFIKATION:
+- An jedem Tag des Monats muss zwingend exakt ein D und ein HG besetzt sein.
+- Samstags-Dienste (D) dürfen nur von Fachärzten (FA) geleistet werden.
+- Alle Hintergrunddienste (HG) dürfen nur von Fachärzten (FA) geleistet werden.
+- Assistenzärzte (AA) werden nur für Bereitschaftsdienste (D) an Werktagen (Mo-Do), Freitagen und Sonntagen eingesetzt.
+
+RUHEZEITEN & DIENSTFOLGEN:
+- Die gesetzliche Ruhezeit ist kompromisslos: Nach jedem Bereitschaftsdienst (D) wird automatisch ein F (Frei) am folgenden Werktag generiert.
+- Eine D-D Kombination (Dienst an zwei aufeinanderfolgenden Tagen bei derselben Person) ist unter keinen Umständen zulässig.
+- Ein HG-Dienst direkt vor einem eigenen Bereitschaftsdienst (HG -> D) ist verboten und wird hart bestraft, es sei denn, es handelt sich um die zulässige Kopplung von Freitag-HG auf Samstag-BD.
+- Das fragmentierte Muster D-F-D-F (Dienst-Frei-Dienst-Frei) wird algorithmisch erschwert und bestraft.
+
+WOCHENEND- & FEIERTAGSLOGIK:
+- Das "Wochenende" umfasst Freitag, Samstag und Sonntag.
+- Die Belastungsberechnung erfolgt in Äquivalenten: Ein Wochenende mit mindestens einem D zählt als 1.0; ein Wochenende mit reinem HG zählt als 0.5. Das Ziel ist exakt 1.0 Einheiten pro Person.
+- Aufeinanderfolgende Wochenenden mit Dienst (egal ob D oder HG) sind verboten.
+- Die Samstags-Dienste (D) rotieren streng unter den Fachärzten. Ein zweiter Samstags-Dienst im selben Monat ist massiv strafbehaftet.
+- Feiertags-Alternanz: Wer an Ostern Dienst leistet, ist für Pfingsten gesperrt (und vice versa).
+
+HINTERGRUNDDIENST (HG) ANTI-CLUSTERING:
+- HG-Dienste müssen in einem gleichmäßigen Rhythmus über den Monat verteilt werden.
+- HG-Dienste an aufeinanderfolgenden Tagen (außer bei Kopplungen) werden extrem bestraft.
+- Mindestabstand: Ein Abstand von weniger als 3 Tagen zwischen zwei HG-Diensten führt zu starken Strafabzügen.
+- Dichte-Prüfung: Das System überwacht ein rollierendes 7-Tage-Fenster. Mehr als 1 HG-Dienst pro Woche bei einer Person (Kopplungen ausgenommen) wird vom Algorithmus systematisch unterdrückt.
+- Kein HG für einen AA, wenn der FA am Folgetag selbst D hat.
+
+FAIRNESS & WORKLOAD-BALANCE (FA-GRUPPE):
+- Fachärzte, die im Monat weniger Bereitschaftsdienste (D) absolvieren, bekommen algorithmisch garantiert mehr Hintergrunddienste (HG) zugeteilt. Die Formel ist 1:1 (ein BD weniger = ein HG mehr als der Durchschnitt).
+- Die Art der HG-Belastung (anstrengender HG für AA vs. ruhigerer HG für FA) wird streng überwacht und ausbalanciert.
+
+SPEZIFISCHE KOPPLUNGSREGELN (BUNDLING):
+Diese Regeln greifen deterministisch und überschreiben die Abstands-Regeln:
+- AA-Freitags-Regel: Hat ein AA am Freitag D, übernimmt der FA, der am Samstag D hat, zwingend den HG am Freitag.
+- FA-Samstags-Regel: Ein FA mit Samstags-D übernimmt zwingend den HG am Sonntag.
+- Feiertags-Vortags-Regel: Hat ein AA am Tag vor einem Feiertag D, übernimmt der FA des Feiertags-D den HG am Vortag.
+
+PERSONELLE SONDEREINSCHRÄNKUNGEN:
+- Prof. Schäfer: Komplett dienstbefreit (Target 0).
+- Dr. Polednia: Absolutes Dienstverbot (D) und HG-Verbot für AA an Sonntagen, Dienstagen und Donnerstagen. (Ursache: Befundfreigabe-Kollision mit KUS-Untersuchungen am Folgetag).
+- Dr. Becker: Samstags-D nur als absolut letzte Instanz (Ultima Ratio). Falls sie Samstags-D hat, trägt das System zwingend einen FZA-Tag am nächsten regulären Werktag ein.
+- Fr. Dalitz: Sie darf an einem Sonntag oder Montag niemals einen HG übernehmen, wenn gleichzeitig Herr Torki oder Herr Sebastian den BD leisten. (Ursache: Mammographie-Schicht am Folgetag lässt keine Zeit für zeitintensive AA-Befundfreigaben).
+- Dr. Becker & Dr. Martin (CT-Leitung): Diese beiden dürfen an Werktagen nicht gleichzeitig im Urlaub sein oder ein "F" (Freizeitausgleich) haben. Der Algorithmus routet Dienste und die daraus resultierenden F-Tage so, dass immer mindestens einer anwesend ist.
+
+SONSTIGES:
+- Donnerstags-Dienste werden als "Urlaubs-Verlängerer" priorisiert an Personen vergeben, die in der Folgewoche Urlaub haben.
+- Der Neural Fitness Index (NFI) bewertet den Plan auf einer Skala bis 100.0 und misst dabei Abdeckung, BD-Fairness (Spread), HG-Fairness, WE-Fairness und Wunscherfüllung.

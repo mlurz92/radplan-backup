@@ -1,0 +1,30 @@
+Regeln für den Algorithmus:
+
+- Als Dienste Zählen D und HG
+- Die D sollen möglichst entsprechend der voreingestellten Ziele verteilt werden
+- Bereits gesetzte Dienste müssen vollständig beibehalten werden
+- Eingestellte Wünsche müssen berücksichtigt werden
+- KEIN Dienst an Urlaubstagen oder Tagen vor Urlaub
+- Pro Tag gibt es genau einen D und einen HG
+- Am Tag nach einem D ist IMMER automatisch F einzutragen, hier kein weiterer D (ohne Ausnahme); Ausnahme: an Wochenenden sollte ein FA der am Samstag D hat am Sonntag den HG machen. Die Kombination D-D bei der gleichen Person ist also unter keinen Umständen möglich
+- Die D sollen gleichmäßig zwischen allen AA und FA über den gesamten Monat verteilt werden unter Berücksichtigung aller Regeln und Einschränkungen
+- Die HG sollen gleichmäßig zwischen allen FA über den gesamten Monat verteilt werden unter Berücksichtigung aller Einschränkungen.
+- Bei der Vergabe der D und HG soll primär auf ein ausgewogenes Verhältnis im Sinne der Regeln für den aktuellen Monat geachtet werden. Bei möglichen Vergabekonflikten nutzt du Fairness-Regeln, für die du die zurückliegenden Schichteinteilungen und ggf. auch bereits in Zukunft gesetzte Zuteilungen berücksichtigst.
+
+- Zu Diensten am Wochenende zählen D und HG am Freitag, Samstag und Sonntag. Es sollen die Wochenenden mit Diensten gezählt werden, wobei ein Wochenende mit mindestens einem D als 1 gewertet wird und ein Wochenende mit nur HG als 0,5 gewertet wird.
+- Die Anzahl an Wochenenden mit Diensten soll möglichst gering gehalten werden.
+- Die Samstags D sollen nur von einem FA besetzt werden.
+- Die Anzahl der Samstags D sollten möglichst gleichmäßig zwischen den FA innerhalb des Monats verteilt werden (außer Dr. Becker) unter Beachtung aller Regeln, Voreinstellungen/Wünsche, Einschränkungen und Fairness-Regeln. Dr. Becker soll nur für einen D am Samstag eingetragen werden, wenn sie wirklich die letzte Möglichkeit für einen D durch einen FA am Samstag ist.
+- HG dürfen nur von einem FA übernommen werden. HG bei einem AA im D hat zur Folge, dass der FA telefonisch für Fragen des AA bereit stehen muss und am nächsten Tag die Befunde des AA freigeben muss, bei einem HG für einen FA im D ist diese Freigabepflicht nicht, die HG sind also entspannter für den Hintergrundhabenden; Folge: hat ein AA am Freitag D soll der FA der am Samstag D hat auch den HG des AA am Freitag übernehmen, dass kein FA extra in die Klinik fahren muss.
+- Kein HG für AA, wenn der FA am nächsten Tag D hat, da der FA am Tag des D eine halbe Stunde später kommt und somit die Befundfreigabe nicht rechtzeitig machen kann.
+- HG sollen möglichst so zwischen den FA verteilt werden, dass die Anzahl an HG mit AA im D und FA im D möglichst fair verteilt ist.
+- Ein FA der weniger D in dem entsprechenden Monat hat kann tendenziell mehr HG eingeteilt bekommen als die anderen FA, die Anzahl der D bleibt davon unberührt und soll entsprechend der Voreinstellungen und Vorgaben/Regeln gleichmäßig aufgeteilt werden.
+- Donnerstag D ist ein sehr beliebter Dienst, da man durch das F am Freitag ein verlängertes Wochenende hat. Dieser Dienst ist bevorzugt an diejenigen zu vergeben, die anschließend Urlaub haben, um den Urlaub pseudo zu verlängern. Achte auch hier bei der Vergabe auf Fairness-regeln.
+- Versuche die Kombination D-F-D-F zu vermeiden, außer es ist anders gewünscht. 
+- Versuche die D und HG möglichst gleichmäßig über die verfügbaren Tage des Monats zu verteilen unter Beachtung aller Regeln.
+
+- Dr. Polednia keine D am Sonntag, Dienstag und Donnerstag, da er der einzige ist, der am Tag darauf KUS machen kann
+- Dr. Polednia möglichst kein HG von AA am Sonntag, Dienstag und Donnerstag, da die Freigabe der Befunde sonst mit KUS kollidiert
+- Dr. Becker soll nur für einen D am Samstag eingetragen werden, wenn sie wirklich die letzte Möglichkeit für einen D durch einen FA am Samstag ist. Wenn sie für einen Samstag D gesetzt ist, muss sie am darauf folgenden Werktag einen FZA-Tag eingetragen bekommen.
+- Dr. Martin keine D dass F auf einen Werktag fällt wenn Dr. Becker im Urlaub ist und andersrum, da sich die beiden in der CT-Leitung vertreten.
+
